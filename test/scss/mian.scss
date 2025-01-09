@@ -61,18 +61,10 @@ main {
 
    .phrase:nth-child(2n+1) {
       left: 15vw;
-      // border-top-left-radius: 100px;
-      // border-top-right-radius: 20px;
-      // border-bottom-right-radius: 100px;
-      // border-bottom-left-radius: 20px;
    }
    
    .phrase:nth-child(2n) {
       left: 50vw;
-      // border-top-left-radius: 20px;
-      // border-top-right-radius: 100px;
-      // border-bottom-right-radius: 20px;
-      // border-bottom-left-radius: 100px;
    }
 }
 
@@ -176,7 +168,6 @@ main {
 
             .button_question {
                width: 100%;
-               // margin-left: auto;
                display: flex;
                justify-content: center;
                align-items: center;
@@ -319,7 +310,6 @@ main {
                   bottom: 0;
                   left: 0;
                   width: 5vw;
-                  // height: 4vw;
                   display: flex;
                   flex-direction: column;
                   align-items: center;
@@ -333,23 +323,12 @@ main {
             }
          }
 
-         // #chart {
-         //    width: 450px;
-         //    height: 450px;
-         // }
-
          #chart svg {
             g:last-child {
                pointer-events: none;
                cursor: default;
             }
          }
-
-         // #chart svg g {
-         //    text {
-         //       cursor: default;
-         //    }
-         // }
       }
    }
 }
@@ -899,9 +878,7 @@ main {
       transform: translateX(0);
    }
    40% {
-      // width: 90vw;
       opacity: 1;
-      // transform: translateX(17.5vw);
    }
    60% {
       width: 90vw;
@@ -923,13 +900,10 @@ main {
    }
    40% {
       opacity: 1;
-      // width: 90vw;
-      // transform: translateX(17.5vw);
    }
    65% {
       opacity: 1;
       width: 90vw;
-      // transform: translateX(0vw);
    }
    100% {
       width: 90vw;
@@ -945,9 +919,7 @@ main {
       transform: translateX(0);
    }
    40% {
-      // width: 90vw;
       opacity: 1;
-      // transform: translateX(17.5vw);
    }
    60% {
       width: 90vw;
