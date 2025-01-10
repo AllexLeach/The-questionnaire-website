@@ -1,7 +1,7 @@
 @use "sass:list";
 @use "sass:map";
 
-@import './tipography.scss';
+@use './tipography.scss';
 
 * {
    margin: 0;
@@ -260,7 +260,8 @@ main {
       box-shadow: 0 0 16px 0px rgb(110, 110, 110);
 
       h1 {
-         padding: 2vw;
+         text-align: center;
+         padding: 1vh 0;
       }
 
       .result_question {
@@ -363,6 +364,10 @@ main {
    .block_result {
       .result {
          width: 60vw;
+
+         h1 {
+            font-size: 1.5rem;
+         }
 
          .result_question {
             .list_question {
@@ -569,6 +574,10 @@ main {
       .result {
          width: 90vw;
 
+         h1 {
+            font-size: 1.25rem;
+         }
+
          h2 {
             text-align: center;
             font-size: 1.5rem;
@@ -589,284 +598,82 @@ main {
    }
 }
 
-@keyframes user_form_40000 {
-   0% {
-      width: 35vw;
-      opacity: 1;
-      transform: translateX(0);
-   }
-   40% {
-      width: 35vw;
-      opacity: 1;
-      transform: translateX(17.5vw);
-   }
-   60% {
-      width: 35vw;
-      opacity: 1;
-   }
-   100% {
-      width: 0;
-      opacity: 0;
-      transform: translateX(-75vw);
-      display: none;
-   }
-}
+//screen-width <=> 4000, 1440, 1024, 768
+$screen-sizes: (
+   1: ("size": "_40000", "width": 35, "translateX": 75),
+   2: ("size": "_1440", "width": 60, "translateX": 250),
+   3: ("size": "_1024", "width": 60, "translateX": 250),
+   4: ("size": "_768", "width": 80, "translateX": 250)
+);
 
-@keyframes question_form_40000 {
-   0% {
-      width: 0;
-      opacity: 0;
-      transform: translateX(75vw);
+@each $name, $size in $screen-sizes {
+   @keyframes user_form#{map.get($screen-sizes, $name, "size")} {
+      0% {
+         width: #{map.get($screen-sizes, $name, "width")}vw;
+         opacity: 1;
+         transform: translateX(0);
+      }
+      40% {
+         width: #{map.get($screen-sizes, $name, "width")}vw;
+         opacity: 1;
+         transform: translateX(17.5vw);
+      }
+      60% {
+         width: #{map.get($screen-sizes, $name, "width")}vw;
+         opacity: 1;
+      }
+      100% {
+         width: 0;
+         opacity: 0;
+         transform: translateX(-#{map.get($screen-sizes, $name, "translateX")}vw);
+         display: none;
+      }
    }
-   40% {
-      opacity: 1;
-      width: 35vw;
-      transform: translateX(17.5vw);
+   
+   @keyframes question_form#{map.get($screen-sizes, $name, "size")} {
+      0% {
+         width: 0;
+         opacity: 0;
+         transform: translateX(#{map.get($screen-sizes, $name, "translateX")}vw);
+      }
+      40% {
+         opacity: 1;
+         width: #{map.get($screen-sizes, $name, "width")}vw;
+         transform: translateX(17.5vw);
+      }
+      65% {
+         opacity: 1;
+         width: #{map.get($screen-sizes, $name, "width")}vw;
+         transform: translateX(0vw);
+      }
+      100% {
+         width: #{map.get($screen-sizes, $name, "width")}vw;
+         opacity: 1;
+         transform: translateX(0vw);
+      }
    }
-   65% {
-      opacity: 1;
-      width: 35vw;
-      transform: translateX(0vw);
-   }
-   100% {
-      width: 35vw;
-      opacity: 1;
-      transform: translateX(0vw);
-   }
-}
-
-@keyframes box_out_40000 {
-   0% {
-      width: 35vw;
-      opacity: 1;
-      transform: translateX(0);
-   }
-   40% {
-      width: 35vw;
-      opacity: 1;
-      transform: translateX(17.5vw);
-   }
-   60% {
-      width: 35vw;
-      opacity: 1;
-   }
-   100% {
-      width: 0;
-      opacity: 0;
-      transform: translateX(-75vw);
-      display: none;
-   }
-}
-
-
-//screen-width <=> 1440px
-@keyframes user_form_1440 {
-   0% {
-      width: 60vw;
-      opacity: 1;
-      transform: translateX(0);
-   }
-   40% {
-      width: 60vw;
-      opacity: 1;
-      transform: translateX(17.5vw);
-   }
-   60% {
-      width: 60vw;
-      opacity: 1;
-   }
-   100% {
-      width: 0;
-      opacity: 0;
-      transform: translateX(-75vw);
-      display: none;
-   }
-}
-
-@keyframes question_form_1440 {
-   0% {
-      width: 0;
-      opacity: 0;
-      transform: translateX(75vw);
-   }
-   40% {
-      opacity: 1;
-      width: 60vw;
-      transform: translateX(17.5vw);
-   }
-   65% {
-      opacity: 1;
-      width: 60vw;
-      transform: translateX(0vw);
-   }
-   100% {
-      width: 60vw;
-      opacity: 1;
-      transform: translateX(0vw);
-   }
-}
-
-@keyframes box_out_1440 {
-   0% {
-      width: 60vw;
-      opacity: 1;
-      transform: translateX(0);
-   }
-   40% {
-      width: 60vw;
-      opacity: 1;
-      transform: translateX(17.5vw);
-   }
-   60% {
-      width: 60vw;
-      opacity: 1;
-   }
-   100% {
-      width: 0;
-      opacity: 0;
-      transform: translateX(-75vw);
-      display: none;
-   }
-}
-
-//screen-width <=> 1024px
-@keyframes user_form_1024 {
-   0% {
-      width: 60vw;
-      opacity: 1;
-      transform: translateX(0);
-   }
-   40% {
-      width: 60vw;
-      opacity: 1;
-      transform: translateX(17.5vw);
-   }
-   60% {
-      width: 60vw;
-      opacity: 1;
-   }
-   100% {
-      width: 0;
-      opacity: 0;
-      transform: translateX(-75vw);
-      display: none;
-   }
-}
-
-@keyframes question_form_1024 {
-   0% {
-      width: 0;
-      opacity: 0;
-      transform: translateX(75vw);
-   }
-   40% {
-      opacity: 1;
-      width: 60vw;
-      transform: translateX(17.5vw);
-   }
-   65% {
-      opacity: 1;
-      width: 60vw;
-      transform: translateX(0vw);
-   }
-   100% {
-      width: 60vw;
-      opacity: 1;
-      transform: translateX(0vw);
-   }
-}
-
-@keyframes box_out_1024 {
-   0% {
-      width: 60vw;
-      opacity: 1;
-      transform: translateX(0);
-   }
-   40% {
-      width: 60vw;
-      opacity: 1;
-      transform: translateX(17.5vw);
-   }
-   60% {
-      width: 60vw;
-      opacity: 1;
-   }
-   100% {
-      width: 0;
-      opacity: 0;
-      transform: translateX(-75vw);
-      display: none;
-   }
-}
-
-
-//screen-width <=> 768px
-@keyframes user_form_768 {
-   0% {
-      width: 80vw;
-      opacity: 1;
-      transform: translateX(0);
-   }
-   40% {
-      width: 80vw;
-      opacity: 1;
-      transform: translateX(17.5vw);
-   }
-   60% {
-      width: 80vw;
-      opacity: 1;
-   }
-   100% {
-      width: 0;
-      opacity: 0;
-      transform: translateX(-105vw);
-      display: none;
-   }
-}
-
-@keyframes question_form_768 {
-   0% {
-      width: 0;
-      opacity: 0;
-      transform: translateX(105vw);
-   }
-   40% {
-      opacity: 1;
-      width: 80vw;
-      transform: translateX(17.5vw);
-   }
-   65% {
-      opacity: 1;
-      width: 80vw;
-      transform: translateX(0vw);
-   }
-   100% {
-      width: 80vw;
-      opacity: 1;
-      transform: translateX(0vw);
-   }
-}
-
-@keyframes box_out_768 {
-   0% {
-      width: 80vw;
-      opacity: 1;
-      transform: translateX(0);
-   }
-   40% {
-      width: 80vw;
-      opacity: 1;
-      transform: translateX(17.5vw);
-   }
-   60% {
-      width: 80vw;
-      opacity: 1;
-   }
-   100% {
-      width: 0;
-      opacity: 0;
-      transform: translateX(-105vw);
-      display: none;
+   
+   @keyframes box_out#{map.get($screen-sizes, $name, "size")} {
+      0% {
+         width: #{map.get($screen-sizes, $name, "width")}vw;
+         opacity: 1;
+         transform: translateX(0);
+      }
+      40% {
+         width: #{map.get($screen-sizes, $name, "width")}vw;
+         opacity: 1;
+         transform: translateX(17.5vw);
+      }
+      60% {
+         width: #{map.get($screen-sizes, $name, "width")}vw;
+         opacity: 1;
+      }
+      100% {
+         width: 0;
+         opacity: 0;
+         transform: translateX(-#{map.get($screen-sizes, $name, "translateX")}vw);
+         display: none;
+      }
    }
 }
 
@@ -887,7 +694,7 @@ main {
    100% {
       width: 0;
       opacity: 0;
-      transform: translateX(-105vw);
+      transform: translateX(-250vw);
       display: none;
    }
 }
@@ -896,7 +703,7 @@ main {
    0% {
       width: 0;
       opacity: 0;
-      transform: translateX(105vw);
+      transform: translateX(250vw);
    }
    40% {
       opacity: 1;
@@ -928,7 +735,7 @@ main {
    100% {
       width: 0;
       opacity: 0;
-      transform: translateX(-105vw);
+      transform: translateX(-250vw);
       display: none;
    }
 }
