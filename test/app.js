@@ -466,39 +466,41 @@ function view_result() {
       const answer_object = decode_answer_view(this.responseText);
       const number_of_users = Object.keys(answer_object).length;
       let number_of_answer;
-      
-      block_output_result.innerHTML = `<h2>Количество опрошенных: ${number_of_users}</h2>`;
 
-      const xmlhttp = new XMLHttpRequest();
-      xmlhttp.onload = () => {
-         number_of_answer = count_answers(xmlhttp.responseText);
-         // console.log(answer_object, number_of_answer);
+      if (number_of_users > 30) {
+         block_output_result.innerHTML = `<h2>Количество опрошенных: ${number_of_users}</h2>`;
 
-         block_output_result.innerHTML += `
-         <div class="result_question">
-            <h2>Вопросы:</h2>
-            <ol class="list_question">
-               ${render_li(number_of_answer, answer_object)}
-            </ol>
-            <h2>Возрастные группы:</h2>
-            <div id="chart"></div>
-         </div>
-         `
-         question_res_hover(answer_object);
+         const xmlhttp = new XMLHttpRequest();
+         xmlhttp.onload = () => {
+            number_of_answer = count_answers(xmlhttp.responseText);
+            // console.log(answer_object, number_of_answer);
+
+            block_output_result.innerHTML += `
+            <div class="result_question">
+               <h2>Вопросы:</h2>
+               <ol class="list_question">
+                  ${render_li(number_of_answer, answer_object)}
+               </ol>
+               <h2>Возрастные группы:</h2>
+               <div id="chart"></div>
+            </div>
+            `
+            question_res_hover(answer_object);
 
 
-         const xmlhttpreq = new XMLHttpRequest();
-         xmlhttpreq.onload = () => {
-            const user_sort_by_age_object = view_users(xmlhttpreq.responseText);
-            graf(user_sort_by_age_object);
+            const xmlhttpreq = new XMLHttpRequest();
+            xmlhttpreq.onload = () => {
+               const user_sort_by_age_object = view_users(xmlhttpreq.responseText);
+               graf(user_sort_by_age_object);
+            }
+            xmlhttpreq.open("GET", "./php/view_users.php", true);
+            xmlhttpreq.send();
+
+
          }
-         xmlhttpreq.open("GET", "./php/view_users.php", true);
-         xmlhttpreq.send();
-
-
+         xmlhttp.open("GET", "./php/questions.php", true);
+         xmlhttp.send();
       }
-      xmlhttp.open("GET", "./php/questions.php", true);
-      xmlhttp.send();
    }
    xhttp.open("GET", "./php/view.php", true);
    xhttp.send();
