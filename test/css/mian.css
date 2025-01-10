@@ -256,7 +256,8 @@ main {
   box-shadow: 0 0 16px 0px rgb(110, 110, 110);
 }
 .block_result .result h1 {
-  padding: 2vw;
+  text-align: center;
+  padding: 1vh 0;
 }
 .block_result .result .result_question {
   width: 100%;
@@ -332,6 +333,9 @@ main {
   }
   .block_result .result {
     width: 60vw;
+  }
+  .block_result .result h1 {
+    font-size: 1.5rem;
   }
   .block_result .result .result_question .list_question {
     padding: 0 0 0 35px;
@@ -463,6 +467,9 @@ main {
   .block_result .result {
     width: 90vw;
   }
+  .block_result .result h1 {
+    font-size: 1.25rem;
+  }
   .block_result .result h2 {
     text-align: center;
     font-size: 1.5rem;
@@ -558,7 +565,7 @@ main {
   100% {
     width: 0;
     opacity: 0;
-    transform: translateX(-75vw);
+    transform: translateX(-250vw);
     display: none;
   }
 }
@@ -566,7 +573,7 @@ main {
   0% {
     width: 0;
     opacity: 0;
-    transform: translateX(75vw);
+    transform: translateX(250vw);
   }
   40% {
     opacity: 1;
@@ -602,7 +609,7 @@ main {
   100% {
     width: 0;
     opacity: 0;
-    transform: translateX(-75vw);
+    transform: translateX(-250vw);
     display: none;
   }
 }
@@ -624,7 +631,7 @@ main {
   100% {
     width: 0;
     opacity: 0;
-    transform: translateX(-75vw);
+    transform: translateX(-250vw);
     display: none;
   }
 }
@@ -632,7 +639,7 @@ main {
   0% {
     width: 0;
     opacity: 0;
-    transform: translateX(75vw);
+    transform: translateX(250vw);
   }
   40% {
     opacity: 1;
@@ -668,7 +675,7 @@ main {
   100% {
     width: 0;
     opacity: 0;
-    transform: translateX(-75vw);
+    transform: translateX(-250vw);
     display: none;
   }
 }
@@ -690,7 +697,7 @@ main {
   100% {
     width: 0;
     opacity: 0;
-    transform: translateX(-105vw);
+    transform: translateX(-250vw);
     display: none;
   }
 }
@@ -698,7 +705,7 @@ main {
   0% {
     width: 0;
     opacity: 0;
-    transform: translateX(105vw);
+    transform: translateX(250vw);
   }
   40% {
     opacity: 1;
@@ -734,7 +741,7 @@ main {
   100% {
     width: 0;
     opacity: 0;
-    transform: translateX(-105vw);
+    transform: translateX(-250vw);
     display: none;
   }
 }
@@ -754,7 +761,7 @@ main {
   100% {
     width: 0;
     opacity: 0;
-    transform: translateX(-105vw);
+    transform: translateX(-250vw);
     display: none;
   }
 }
@@ -762,7 +769,7 @@ main {
   0% {
     width: 0;
     opacity: 0;
-    transform: translateX(105vw);
+    transform: translateX(250vw);
   }
   40% {
     opacity: 1;
@@ -793,7 +800,7 @@ main {
   100% {
     width: 0;
     opacity: 0;
-    transform: translateX(-105vw);
+    transform: translateX(-250vw);
     display: none;
   }
 }
