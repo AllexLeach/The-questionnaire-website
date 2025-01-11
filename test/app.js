@@ -1,3 +1,14 @@
+const sel = document.querySelector('.form_user__fio');
+let fio
+
+sel.addEventListener("change", e => {
+   Array.from(e.target.options).forEach(el => {
+      if (el.selected) {
+         fio = el.value;
+      }
+   });
+});
+
 function xmhttp_onload_output_text(answers) {
    let ans_output = [];
    let str_ans = '';
@@ -507,29 +518,39 @@ function view_result() {
 }
 
 document.querySelector('.form_user__submit').onclick = () => {
-   const fio = document.querySelector('.form_user__fio').value;
    const age = document.querySelector('.form_user__age').value;
-   let str = '' + fio.toString() + "/" + age.toString();
-
+   let id = '';
+   
    if (fio && age) {
+      let str = '' + fio.toString() + "/" + age.toString();
       // отправка данных юзера в бд (1 форма)
       const xhttp = new XMLHttpRequest();
       xhttp.open("GET", "./php/user.php?q=" + str, true);
       xhttp.send();
-   
+
+      const user_xhttp = new XMLHttpRequest();
+      user_xhttp.onload = function() {
+         id = user_xhttp.responseText;
+      }
+      user_xhttp.open("GET", "./php/get_user_id.php", true);
+      user_xhttp.send();
+      
       // получение вопросов с бд
       const xmlhttp = new XMLHttpRequest();
       xmlhttp.onload = function() {
          document.querySelector('.box').innerHTML = xmhttp_onload_output_text(this.responseText);
-         render_question(fio);
+         setTimeout(function() {
+            let arr_id = id.split(';');
+            arr_id.pop();
+            i = (parseInt(arr_id.pop()) + 1).toString();
+
+            render_question(i);
+         }, 100);
       }
       xmlhttp.open("GET", "./php/questions.php", true);
       xmlhttp.send();
       
       setTimeout(function () {
-         // document.querySelector('.submit_ans').onclick = () => {
-         //    thenk_u();
-         // }
          tracking_answer__label_input();
       }, 100)
    

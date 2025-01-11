@@ -9,10 +9,14 @@
    box-sizing: border-box;
 }
 
-input {
+input, .form_user__fio {
    padding: 5px;
    border: none;
    border-radius: 10px;
+}
+
+.form_user__fio:focus-visible {
+   outline: none;
 }
 
 input:focus-visible {
@@ -91,7 +95,7 @@ main {
       border-radius: 18px;
       box-shadow: 0 0 16px 0px rgb(110, 110, 110);
       
-      input {
+      input, .form_user__fio {
          padding: 15px;
          width: 70%;
          font-size: 1.5rem;
@@ -521,7 +525,7 @@ main {
          width: 90vw;
          height: 35vh;
 
-         input {
+         input, .form_user__fio {
             font-size: 1.25rem;
             width: 85%;
          }

@@ -27,7 +27,12 @@
       </div>
       <div class="block_form">
             <form action="" method="post" class="form_user">
-               <input type="text" name="user_fio" class="form_user__fio" placeholder="ФИО">
+               <select name="user_'fio'" class="form_user__fio">
+                  <option value="">--Выберите вариант--</option>
+                  <option value="Я школьник">Я школьник</option>
+                  <option value="Я студент">Я студент</option>
+                  <option value="Я рабоатю">Я рабоатю</option>
+               </select>
                <input type="number" name="user_age" class="form_user__age" placeholder="Возраст">
                <input type="button" name="submit_user_form" value="Пройти тест" class="form_user__submit">
             </form>
