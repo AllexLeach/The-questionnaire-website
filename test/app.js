@@ -131,7 +131,7 @@ function is_valid(el) {
    return valid;
 }
 
-function render_question(fio) {
+function render_question(fio, strUsers) {
    const qf = document.querySelector('.question_form');
    let q_array = [];
    let q_object = {};
@@ -160,6 +160,11 @@ function render_question(fio) {
       q_object[key][q_object[key].length-1].onclick = () => {
          if (is_valid(q_object[key][0])) {
             if (key == Object.keys(q_object).length-1) {
+               // отправка данных юзера в бд (1 форма)
+               const xuhttp = new XMLHttpRequest();
+               xuhttp.open("GET", "./php/user.php?q=" + strUsers, true);
+               xuhttp.send();
+
                // отправка ответов в бд (форма 2)
                const xhttp = new XMLHttpRequest();
                let str = post_data_answers() + '|' + fio;
@@ -523,10 +528,6 @@ document.querySelector('.form_user__submit').onclick = () => {
    
    if (fio && age) {
       let str = '' + fio.toString() + "/" + age.toString();
-      // отправка данных юзера в бд (1 форма)
-      const xhttp = new XMLHttpRequest();
-      xhttp.open("GET", "./php/user.php?q=" + str, true);
-      xhttp.send();
 
       const user_xhttp = new XMLHttpRequest();
       user_xhttp.onload = function() {
@@ -544,7 +545,7 @@ document.querySelector('.form_user__submit').onclick = () => {
             arr_id.pop();
             i = (parseInt(arr_id.pop()) + 1).toString();
 
-            render_question(i);
+            render_question(i, str);
          }, 100);
       }
       xmlhttp.open("GET", "./php/questions.php", true);
