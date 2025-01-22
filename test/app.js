@@ -275,12 +275,15 @@ function decode_answer_view(ajax_ans) {
    let unique_fio = [];
    let new_ajax_ans_array = [];
    ajax_ans_array.pop();
+   let prev = ajax_ans_array[0].split('|')[0];
+   unique_fio.push(prev);
 
-   for (i=0; i<ajax_ans_array.length-1; i++) {
-      if (ajax_ans_array[i].split('|')[0] != ajax_ans_array[i+1].split('|')[0]) {
+   for (i=0; i<ajax_ans_array.length; i++) {
+      if (prev != ajax_ans_array[i].split('|')[0]) {
          unique_fio.push(ajax_ans_array[i].split('|')[0]);
       }
       new_ajax_ans_array[i] = ajax_ans_array[i].split('|');
+      prev = ajax_ans_array[i].split('|')[0];
    }
    new_ajax_ans_array[ajax_ans_array.length-1] = ajax_ans_array[ajax_ans_array.length-1].split('|');
 
@@ -322,7 +325,9 @@ function render_ul(arr, object_ans, index) {
    }
 
    arr_ans.forEach(el => {
-      arr_ans_current.push(el[index]);
+      if (el[index]) {
+         arr_ans_current.push(el[index]);
+      }
    });
 
    arr.forEach(el => {
@@ -414,6 +419,22 @@ function graf(users) {
    }
 }
 
+//quick sort на всякий случай
+// function qsort(ans) {
+//    let priv = ans[0];
+//    let left = [];
+//    let right = [];
+//    for (i=1; i<ans.length; i++) {
+//       if (priv > ans[i]) {
+//          left.push(ans[i]);
+//       } else {
+//          right.push(ans[i]);
+//       }
+//    }
+
+//    return qsort(left).concat(priv, qsort(right));
+// }
+
 // web-версия (надо написать проверку на web-браузер при использовании)
 function question_res_hover(answers) {
    const answer_procent = document.querySelectorAll('.answer_procent');
@@ -424,8 +445,15 @@ function question_res_hover(answers) {
    for (let key in answers) {
       arr_ans.push(answers[key]);
    }
+   
+   let res = arr_ans.reduce((prev, curr) => {
+      if (prev < Object.keys(curr).length) {
+         prev = Object.keys(curr).length
+      }
+      return prev
+   }, 0);
 
-   for (let key in arr_ans[0]) {
+   for (key = 0; key <= res; key++) {
       object_ans[key] = [];
    }
    
@@ -435,9 +463,7 @@ function question_res_hover(answers) {
       }
    });
 
-
    answer_procent.forEach((el, key) => {
-
       hints[key].innerHTML = `<p>Ответили:</p><p style="padding: 0 0 1.5vh 0"><em>${object_ans[el.id.split("_")[0]].filter(x => x === el.id.split("_")[1].slice(1, el.id.split("_")[1].length-1)).length}</em> человек</p>`;
 
       el.addEventListener('mousemove', (e) => {
