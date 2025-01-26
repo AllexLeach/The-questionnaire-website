@@ -36,7 +36,7 @@ function xmhttp_onload_output_text(answers) {
          <h2>Вопрос ${arr[0]}</h2>
          <h3>${arr[1]}</h3>
          <div class="answers">${stringi}</div>
-         <button type="button" id="button_question_${key+1}" class="button_question"><img src="https://cdn-icons-png.flaticon.com/512/271/271226.png"></button>
+         <button type="button" id="button_question_${key+1}" class="button_question"><img src="./img/arrow.png"></button>
       </div>`;
    });
 
@@ -572,14 +572,11 @@ document.querySelector('.form_user__submit').onclick = () => {
             i = (parseInt(arr_id.pop()) + 1).toString();
 
             render_question(i, str);
+            tracking_answer__label_input();
          }, 100);
       }
       xmlhttp.open("GET", "./php/questions.php", true);
       xmlhttp.send();
-      
-      setTimeout(function () {
-         tracking_answer__label_input();
-      }, 100)
    
       animation_user_form(document.querySelector(".form_user").style);
       animation_question_form(document.querySelector(".box").style);

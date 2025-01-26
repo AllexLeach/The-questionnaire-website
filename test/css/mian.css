@@ -36,6 +36,7 @@ h1 {
    padding: 5px;
    border: none;
    border-radius: 10px;
+   background-color: #ffffff;
  }
  
  .form_user__fio:focus-visible {
